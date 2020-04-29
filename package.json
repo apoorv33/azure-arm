@@ -1,7 +1,7 @@
 {
   "name": "cli",
   "version": "1.0.0",
-  "description": "Automate your GitHub workflows using Azure CLI scripts.",
+  "description": "Automate your GitHub workflows using Azure CLI scripts to deploy ARM Templates.",
   "main": "lib/main.js",
   "scripts": {
     "build": "tsc",
