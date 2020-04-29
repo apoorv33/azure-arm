@@ -15,7 +15,7 @@ The definition of this GitHub Action is in [action.yml](https://github.com/Azure
 
 ### Dependencies on other GitHub Actions
 * [Azure Login](https://github.com/Azure/login) – **Required** Login with your Azure credentials 
-* [Checkout](https://github.com/actions/checkout) – **Optional** To execute the scripts present in your repository
+* [Checkout](https://github.com/actions/checkout) – **Required** To execute the scripts present in your repository
 ### Workflow to execute an AZ CLI script of a specific CLI version
 ```
 # File: .github/workflows/workflow.yml
