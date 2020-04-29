@@ -79,32 +79,6 @@ Follow the steps to configure the secret:
   * Now in the workflow file in your branch: `.github/workflows/workflow.yml` replace the secret in Azure login action with your secret (Refer to the example above)
 
 
-## Note
-Please note that the action executes Az CLI script in a docker container. This means that the action is subjected to potential restrictions which arise from containerized execution. For example: 
-  1. If script sets up an environment variable, it will not take effect in host and hence subsequent actions shouldn't rely on such environment variable.
-  2. There is some restriction on how cross action file read/write is done. GITHUB_WORKSPACE directory in host is mapped to working directory inside container. So, if the action wants to create a file, which will be read by subsequent actions, it should do so within current working directory tree.
-
-## Azure CLI Action metadata file
-
-```
-# File: action.yml
-
-# Automate your GitHub workflows using Azure CLI scripts.
-name: 'Azure CLI'
-description: 'The action is used to execute Azure CLI commands'
-inputs:
-  inlineScript:
-    description: 'Specify the script here'
-    required: true
-  azcliversion:
-    description: 'Azure CLI version to be used to execute the script'
-    required: false
-    default: 'latest'
-runs:
-  using: 'node12'
-  main: 'lib/main.js'
-```
-
 # Contributing
 
 This project welcomes contributions and suggestions.  Most contributions require you to agree to a
