@@ -1,7 +1,7 @@
-# GitHub Action for Azure CLI
+# GitHub Action for Azure Resource Manager
 
 
-With Azure CLI GitHub Action, you can automate your workflow by executing [Azure CLI](https://github.com/Azure/azure-cli) commands to manage Azure resources inside of an Action.
+With ARM GitHub Action, you can automate your workflow by executing [Azure CLI](https://github.com/Azure/azure-cli) commands to deploy ARM templates and manage Azure resources.
 
 The action executes the Azure CLI Bash script on a user defined Azure CLI version. If the user does not specify a version, latest CLI version is used.
 Read more about various Azure CLI versions [here](https://github.com/Azure/azure-cli/releases).
@@ -22,7 +22,11 @@ The definition of this GitHub Action is in [action.yml](https://github.com/Azure
 
 on: [push]
 
-name: AzureCLISample
+name: AzureARMSample
+
+env:
+  LOCATION: westeurope
+  RESOURCE_GROUP: rg-production-action
 
 jobs:
 
@@ -40,40 +44,10 @@ jobs:
       with:
         azcliversion: 2.0.72
         inlineScript: |
-          az account show
-          az storage -h
+          az group create --location $LOCATION --name $RESOURCE_GROUP
+          az group deployment create --resource-group $RESOURCE_GROUP --template-file $GITHUB_WORKSPACE/azuredeploy.json
 ```
 
-### Workflow to execute an AZ CLI script of a specific CLI version via file present in your repository.
-```
-# File: .github/workflows/workflowForFile.yml
-
-on: [push]
-
-name: AzureCLISampleForFile
-
-jobs:
-
-  build-and-deploy:
-    runs-on: ubuntu-latest
-    steps:
-    
-    - name: Azure Login
-      uses: azure/login@v1
-      with:
-        creds: ${{ secrets.AZURE_CREDENTIALS }}
-
-    - name: Checkout
-      uses: actions/checkout@v1
-
-    - name: Azure CLI script file
-      uses: azure/CLI@v1
-      with:
-        azcliversion: 2.0.72
-        inlineScript: |
-          chmod +x $GITHUB_WORKSPACE/sampleScript.sh
-          $GITHUB_WORKSPACE/sampleScript.sh
-```
   * [GITHUB_WORKSPACE](https://help.github.com/en/github/automating-your-workflow-with-github-actions/virtual-environments-for-github-hosted-runners) is the environment variable provided by GitHub which represents the root of your repository.
 
 ### Configure Azure credentials as GitHub Secret:
