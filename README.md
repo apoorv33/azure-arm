@@ -16,7 +16,7 @@ The definition of this GitHub Action is in [action.yml](https://github.com/Azure
 ### Dependencies on other GitHub Actions
 * [Azure Login](https://github.com/Azure/login) – **Required** Login with your Azure credentials 
 * [Checkout](https://github.com/actions/checkout) – **Required** To execute the scripts present in your repository
-### Workflow to execute an AZ CLI script for template deployment
+### Workflow to execute an AZ CLI script for template deployment using template location
 ```
 # File: .github/workflows/workflow.yml
 
@@ -50,6 +50,41 @@ jobs:
           az group create --location $LOCATION --name $RESOURCE_GROUP
           az group deployment create --resource-group $RESOURCE_GROUP --template-file $GITHUB_WORKSPACE/azuredeploy.json
 ```
+### Workflow to execute an AZ CLI script for template deployment using template URI
+```
+# File: .github/workflows/workflow.yml
+
+on: [push]
+
+name: AzureARMSample
+
+env:
+  LOCATION: westeurope
+  RESOURCE_GROUP: rg-production-action
+
+jobs:
+
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+    
+    - name: Azure Login
+      uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+    
+    - name: Checkout
+      uses: actions/checkout@v1
+      
+    - name: Azure CLI script
+      uses: azure/CLI@v1
+      with:
+        azcliversion: 2.0.72
+        inlineScript: |
+          az group create --location $LOCATION --name $RESOURCE_GROUP
+          az group deployment create --resource-group $RESOURCE_GROUP --template-uri https://myresource/azuredeploy.json
+```
+
 ### Workflow to execute an AZ CLI script for template deployment with parameter files
 ```
 # File: .github/workflows/workflow.yml
