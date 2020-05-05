@@ -16,7 +16,7 @@ The definition of this GitHub Action is in [action.yml](https://github.com/Azure
 ### Dependencies on other GitHub Actions
 * [Azure Login](https://github.com/Azure/login) – **Required** Login with your Azure credentials 
 * [Checkout](https://github.com/actions/checkout) – **Required** To execute the scripts present in your repository
-### Workflow to execute an AZ CLI script for templagte deployment
+### Workflow to execute an AZ CLI script for template deployment
 ```
 # File: .github/workflows/workflow.yml
 
@@ -50,7 +50,7 @@ jobs:
           az group create --location $LOCATION --name $RESOURCE_GROUP
           az group deployment create --resource-group $RESOURCE_GROUP --template-file $GITHUB_WORKSPACE/azuredeploy.json
 ```
-### Workflow to execute an AZ CLI script for templagte deployment with parameter files
+### Workflow to execute an AZ CLI script for template deployment with parameter files
 ```
 # File: .github/workflows/workflow.yml
 
