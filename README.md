@@ -24,10 +24,6 @@ on: [push]
 
 name: AzureARMSample
 
-env:
-  LOCATION: westeurope
-  RESOURCE_GROUP: rg-production-action
-
 jobs:
 
   build-and-deploy:
@@ -42,13 +38,13 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v1
       
-    - name: Azure CLI script
-      uses: azure/CLI@v1
+    - name: Azure ARM Deployment
+      uses: azure/ARM@v1
       with:
         azcliversion: 2.0.72
         inlineScript: |
-          az group create --location $LOCATION --name $RESOURCE_GROUP
-          az group deployment create --resource-group $RESOURCE_GROUP --template-file $GITHUB_WORKSPACE/azuredeploy.json
+          az group create --location $REPLACE_THIS_WITH_LOCATION --name $REPLACE_THIS_WITH_RESOURCE_GROUP
+          az group deployment create --resource-group $REPLACE_THIS_WITH_RESOURCE_GROUP --template-file $REPLACE_THIS_WITH_TEMPLATE_FILE
 ```
 ### Workflow to execute an AZ CLI script for template deployment using template URI
 ```
@@ -58,10 +54,6 @@ on: [push]
 
 name: AzureARMSample
 
-env:
-  LOCATION: westeurope
-  RESOURCE_GROUP: rg-production-action
-
 jobs:
 
   build-and-deploy:
@@ -76,13 +68,13 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v1
       
-    - name: Azure CLI script
-      uses: azure/CLI@v1
+    - name: Azure ARM Deployment
+      uses: azure/ARM@v1
       with:
         azcliversion: 2.0.72
         inlineScript: |
-          az group create --location $LOCATION --name $RESOURCE_GROUP
-          az group deployment create --resource-group $RESOURCE_GROUP --template-uri https://myresource/azuredeploy.json
+          az group create --location $REPLACE_THIS_WITH_LOCATION --name $REPLACE_THIS_WITH_RESOURCE_GROUP
+          az group deployment create --resource-group $REPLACE_THIS_WITH_RESOURCE_GROUP --template-uri REPLACE_THIS_WITH_TEMPLATE_URI
 ```
 
 ### Workflow to execute an AZ CLI script for template deployment with parameter files
@@ -93,10 +85,6 @@ on: [push]
 
 name: AzureARMSample
 
-env:
-  LOCATION: westeurope
-  RESOURCE_GROUP: rg-production-action
-
 jobs:
 
   build-and-deploy:
@@ -116,8 +104,8 @@ jobs:
       with:
         azcliversion: 2.0.72
         inlineScript: |
-          az group create --location $LOCATION --name $RESOURCE_GROUP
-          az group deployment create --resource-group $RESOURCE_GROUP --template-file $GITHUB_WORKSPACE/azuredeploy.json --parameters @myparameters.json
+          az group create --location $REPLACE_THIS_WITH_LOCATION --name $REPLACE_THIS_WITH_RESOURCE_GROUP
+          az group deployment create --resource-group $REPLACE_THIS_WITH_RESOURCE_GROUP --template-file REPLACE_THIS_WITH_TEMPLATE_FILE --parameters REPLACE_THIS_WITH_PARAMETER_JSON_FILE
 ```
 
   * [GITHUB_WORKSPACE](https://help.github.com/en/github/automating-your-workflow-with-github-actions/virtual-environments-for-github-hosted-runners) is the environment variable provided by GitHub which represents the root of your repository.
