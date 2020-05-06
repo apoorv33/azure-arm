@@ -12,7 +12,7 @@ inputs:
     required: false
     default: 'latest'
 branding:
-  icon: 'activity.svg'
+  icon: 'align-justify'
   color: 'blue'
 runs:
   using: 'node12'
