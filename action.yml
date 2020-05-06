@@ -3,9 +3,7 @@ name: 'ARM Action'
 description: 'Automate your GitHub workflows using Azure CLI scripts to deploy ARM Templates.'
 inputs:
   inlineScript:
-    description: 'Copy this script and modify with your Resource Group, Location and Template Location 
-    az group create --location $REPLACE_THIS_WITH_LOCATION --name $REPLACE_THIS_WITH_RESOURCE_GROUP
-    az group deployment create --resource-group $REPLACE_THIS_WITH_RESOURCE_GROUP --template-file $REPLACE_THIS_WITH_TEMPLATE_FILE'
+    description: 'Copy this script and modify with your Resource Group, Location and Template Location'+'    az group create --location $REPLACE_THIS_WITH_LOCATION --name $REPLACE_THIS_WITH_RESOURCE_GROUP'+'    az group deployment create --resource-group $REPLACE_THIS_WITH_RESOURCE_GROUP --template-file $REPLACE_THIS_WITH_TEMPLATE_FILE'
     required: true
   azcliversion:
     description: 'Azure CLI version to be used to execute the script. If not provided, latest version is used'
