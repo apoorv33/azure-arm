@@ -10,7 +10,7 @@ inputs:
     required: false
     default: 'latest'
 branding:
-  icon: 'login.svg'
+  icon: 'activity.svg'
   color: 'blue'
 runs:
   using: 'node12'
