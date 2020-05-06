@@ -1,5 +1,5 @@
-# Azure ARM Action
-name: 'Azure ARM Action'
+# ARM Deployment Action
+name: 'ARM Action'
 description: 'Automate your GitHub workflows using Azure CLI scripts to deploy ARM Templates.'
 inputs:
   inlineScript:
