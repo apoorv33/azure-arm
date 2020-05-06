@@ -7,7 +7,10 @@ The action executes the Azure CLI Bash script on a user defined Azure CLI versio
 Read more about various Azure CLI versions [here](https://github.com/Azure/azure-cli/releases).
 
 - `azcliversion` – **Optional** Example: 2.0.72, Default: latest
-- `inlineScript` – **Required** 
+- `location` – **Required** 
+- `resource-group` – **Required** 
+- `template-file` or `template-uri` – **Required** Either the local template location or the template URI must be provided
+- `parameters` – **Optional**
 
 The definition of this GitHub Action is in [action.yml](https://github.com/Azure/CLI/blob/master/action.yml).  The action status is determined by the exit code returned by the script rather than StandardError stream. 
 
