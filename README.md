@@ -102,8 +102,8 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v1
       
-    - name: Azure CLI script
-      uses: azure/CLI@v1
+    - name: Azure ARM Deployment
+      uses: azure/ARM@v1
       with:
         azcliversion: 2.0.72
         inlineScript: |
